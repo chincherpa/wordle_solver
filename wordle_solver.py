@@ -1,7 +1,9 @@
 # TODO: TUI
 
-with open('words5.txt', 'r') as f:
-  content = f.read().splitlines()
+# with open('words5.txt', 'r') as f:
+#   words = f.read().splitlines()
+
+from words import words
 
 _1st_letter = ''
 _2nd_letter = ''
@@ -63,8 +65,8 @@ def word_score(word):
   return word_score
 
 
-def top_10_words(words: list):
-  return list(reversed(sorted(words, key=word_score)))[:10]
+def top_10_words(lwords: list):
+  return list(reversed(sorted(lwords, key=word_score)))[:10]
 
 
 def letter_on_1(word):
@@ -136,50 +138,50 @@ def has_not_letters(word):
   return True
 
 
-print(len(content), 'words in words5.txt')
+print(len(words), 'words in words5.txt')
 
 if _1st_letter:
-  content = list(filter(letter_on_1, content))
+  words = list(filter(letter_on_1, words))
 
 if _2nd_letter:
-  content = list(filter(letter_on_2, content))
+  words = list(filter(letter_on_2, words))
 
 if _3rd_letter:
-  content = list(filter(letter_on_3, content))
+  words = list(filter(letter_on_3, words))
 
 if _4th_letter:
-  content = list(filter(letter_on_4, content))
+  words = list(filter(letter_on_4, words))
 
 if _5th_letter:
-  content = list(filter(letter_on_5, content))
+  words = list(filter(letter_on_5, words))
 
 if _1st_not_letters:
-  content = list(filter(letters_not_on_1, content))
+  words = list(filter(letters_not_on_1, words))
 
 if _2nd_not_letters:
-  content = list(filter(letters_not_on_2, content))
+  words = list(filter(letters_not_on_2, words))
 
 if _3rd_not_letters:
-  content = list(filter(letters_not_on_3, content))
+  words = list(filter(letters_not_on_3, words))
 
 if _4th_not_letters:
-  content = list(filter(letters_not_on_4, content))
+  words = list(filter(letters_not_on_4, words))
 
 if _5th_not_letters:
-  content = list(filter(letters_not_on_5, content))
+  words = list(filter(letters_not_on_5, words))
 
 if has_letters_:
-  content = list(filter(has_letters, content))
-  print(f'{len(content)} haben \t"{has_letters_}"')
+  words = list(filter(has_letters, words))
+  print(f'{len(words)} haben \t"{has_letters_}"')
 
 if has_not_letters_:
-  content = list(filter(has_not_letters, content))
-  print(f'{len(content)} haben nicht \t"{has_not_letters_}"')
+  words = list(filter(has_not_letters, words))
+  print(f'{len(words)} haben nicht \t"{has_not_letters_}"')
 
-print(f'{len(content)} Wörter übrig')
+print(f'{len(words)} Wörter übrig')
 
 # Höchster wordscore hat?
-lTop_10_words = top_10_words(content)
+lTop_10_words = top_10_words(words)
 
 for idx, word in enumerate(lTop_10_words):
   print(f'{idx}: {word} - {word_score(word)}')
