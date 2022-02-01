@@ -3,7 +3,9 @@
 # with open('words5.txt', 'r') as f:
 #   words = f.read().splitlines()
 
+from rich import print
 from words import words
+
 
 _1st_letter = ''
 _2nd_letter = ''
@@ -58,7 +60,6 @@ letter_frequencies = {
 
 
 def word_score(word):
-  # print(word)
   letters_in_word = list(set(word.lower()))
   word_letter_frequencies = [letter_frequencies.get(letter, 0) for letter in letters_in_word]
   word_score = sum(word_letter_frequencies)
