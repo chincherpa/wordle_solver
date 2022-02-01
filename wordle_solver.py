@@ -5,18 +5,24 @@
 
 from words import words
 
-_1st_letter = ''
-_2nd_letter = ''
-_3rd_letter = ''
-_4th_letter = ''
-_5th_letter = ''
-_1st_not_letters = ''
-_2nd_not_letters = ''
-_3rd_not_letters = ''
-_4th_not_letters = ''
-_5th_not_letters = ''
-has_letters_ = ''
-has_not_letters_ = ''
+_1_letter = ''
+_2_letter = ''
+_3_letter = ''
+_4_letter = ''
+_5_letter = ''
+_1_not_letters = ''
+_2_not_letters = ''
+_3_not_letters = ''
+_4_not_letters = ''
+_5_not_letters = ''
+_has_letters = ''
+_has_not_letters = ''
+
+"""
+oraTe
+THIns
+"""
+
 
 # 1 beginnt mit 'SU'
 # 2 enthält 'A'
@@ -57,6 +63,13 @@ letter_frequencies = {
 }
 
 
+def get_func_name(func):
+  def func_name(*args, **kwargs):
+    print(func.__name__, 'calling')
+    return None
+  return func_name
+
+
 def word_score(word):
   # print(word)
   letters_in_word = list(set(word.lower()))
@@ -70,69 +83,69 @@ def top_10_words(lwords: list):
 
 
 def letter_on_1(word):
-  return word[0] == _1st_letter
+  return word[0] == _1_letter
 
 
 def letter_on_2(word):
-  return word[1] == _2nd_letter
+  return word[1] == _2_letter
 
 
 def letter_on_3(word):
-  return word[2] == _3rd_letter
+  return word[2] == _3_letter
 
 
 def letter_on_4(word):
-  return word[3] == _4th_letter
+  return word[3] == _4_letter
 
 
 def letter_on_5(word):
-  return word[4] == _5th_letter
+  return word[4] == _5_letter
 
 
 def letters_not_on_1(word):
-  for letter in _1st_not_letters:
+  for letter in _1_not_letters:
     if letter == word[0]:
       return False
   return True
 
 
 def letters_not_on_2(word):
-  for letter in _2nd_not_letters:
+  for letter in _2_not_letters:
     if letter == word[1]:
       return False
   return True
 
 
 def letters_not_on_3(word):
-  for letter in _3rd_not_letters:
+  for letter in _3_not_letters:
     if letter == word[2]:
       return False
   return True
 
 
 def letters_not_on_4(word):
-  for letter in _4th_not_letters:
+  for letter in _4_not_letters:
     if letter == word[3]:
       return False
   return True
 
 
 def letters_not_on_5(word):
-  for letter in _5th_not_letters:
+  for letter in _5_not_letters:
     if letter == word[4]:
       return False
   return True
 
 
 def has_letters(word):
-  for letter in has_letters_:
+  for letter in _has_letters:
     if letter not in word:
       return False
   return True
 
 
 def has_not_letters(word):
-  for letter in has_not_letters_:
+  for letter in _has_not_letters:
     if letter in word:
       return False
   return True
@@ -140,50 +153,69 @@ def has_not_letters(word):
 
 print(len(words), 'words in words5.txt')
 
-if _1st_letter:
-  words = list(filter(letter_on_1, words))
+while True:
+  _1_letter = input('erster Buchstabe?:\t') or None
+  _2_letter = input('zweiter Buchstabe?:\t') or None
+  _3_letter = input('dritter Buchstabe?:\t') or None
+  _4_letter = input('vierter Buchstabe?:\t') or None
+  _5_letter = input('fünfter Buchstabe?:\t') or None
+  _1_not_letters += input('erster Buchstabe NICHT?:\t')
+  _2_not_letters += input('zweiter Buchstabe NICHT?:\t')
+  _3_not_letters += input('dritter Buchstabe NICHT?:\t')
+  _4_not_letters += input('vierter Buchstabe NICHT?:\t')
+  _5_not_letters += input('fünfter Buchstabe NICHT?:\t')
+  _has_letters += input('hat Buchstaben?:\t')
+  _has_not_letters += input('hat Buchstaben NICHT?:\t')
 
-if _2nd_letter:
-  words = list(filter(letter_on_2, words))
+  if _1_letter:
+    words = list(filter(letter_on_1, words))
 
-if _3rd_letter:
-  words = list(filter(letter_on_3, words))
+  if _2_letter:
+    words = list(filter(letter_on_2, words))
 
-if _4th_letter:
-  words = list(filter(letter_on_4, words))
+  if _3_letter:
+    words = list(filter(letter_on_3, words))
 
-if _5th_letter:
-  words = list(filter(letter_on_5, words))
+  if _4_letter:
+    words = list(filter(letter_on_4, words))
 
-if _1st_not_letters:
-  words = list(filter(letters_not_on_1, words))
+  if _5_letter:
+    words = list(filter(letter_on_5, words))
 
-if _2nd_not_letters:
-  words = list(filter(letters_not_on_2, words))
+  if _1_not_letters:
+    words = list(filter(letters_not_on_1, words))
 
-if _3rd_not_letters:
-  words = list(filter(letters_not_on_3, words))
+  if _2_not_letters:
+    words = list(filter(letters_not_on_2, words))
 
-if _4th_not_letters:
-  words = list(filter(letters_not_on_4, words))
+  if _3_not_letters:
+    words = list(filter(letters_not_on_3, words))
 
-if _5th_not_letters:
-  words = list(filter(letters_not_on_5, words))
+  if _4_not_letters:
+    words = list(filter(letters_not_on_4, words))
 
-if has_letters_:
-  words = list(filter(has_letters, words))
-  print(f'{len(words)} haben \t"{has_letters_}"')
+  if _5_not_letters:
+    words = list(filter(letters_not_on_5, words))
 
-if has_not_letters_:
-  words = list(filter(has_not_letters, words))
-  print(f'{len(words)} haben nicht \t"{has_not_letters_}"')
+  if _has_letters:
+    words = list(filter(has_letters, words))
+    print()
+    print(f'{len(words)} haben \t"{_has_letters}"')
 
-print(f'{len(words)} Wörter übrig')
+  if _has_not_letters:
+    words = list(filter(has_not_letters, words))
+    print()
+    print(f'{len(words)} haben nicht \t"{_has_not_letters}"')
 
-# Höchster wordscore hat?
-lTop_10_words = top_10_words(words)
+  print(f'{len(words)} Wörter übrig')
+  print()
 
-for idx, word in enumerate(lTop_10_words):
-  print(f'{idx}: {word} - {word_score(word)}')
+  # Höchster wordscore hat?
+  lTop_10_words = top_10_words(words)
 
-print('\n', lTop_10_words[0].upper(), '\n')
+  for idx, word in enumerate(lTop_10_words):
+    print(f'{idx}: {word} - {word_score(word)}')
+
+  print('\n', lTop_10_words[0].upper(), '\n')
+
+  input('weiter...')
