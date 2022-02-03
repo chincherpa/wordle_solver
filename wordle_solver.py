@@ -154,11 +154,11 @@ def has_not_letters(word):
 print(len(words), 'words in words5.txt')
 
 while True:
-  _1_letter = input('erster Buchstabe?:\t') or None
-  _2_letter = input('zweiter Buchstabe?:\t') or None
-  _3_letter = input('dritter Buchstabe?:\t') or None
-  _4_letter = input('vierter Buchstabe?:\t') or None
-  _5_letter = input('fünfter Buchstabe?:\t') or None
+  if not _1_letter: _1_letter = input('erster Buchstabe?:\t') or None
+  if not _2_letter: _2_letter = input('zweiter Buchstabe?:\t') or None
+  if not _3_letter: _3_letter = input('dritter Buchstabe?:\t') or None
+  if not _4_letter: _4_letter = input('vierter Buchstabe?:\t') or None
+  if not _5_letter: _5_letter = input('fünfter Buchstabe?:\t') or None
   _1_not_letters += input('erster Buchstabe NICHT?:\t')
   _2_not_letters += input('zweiter Buchstabe NICHT?:\t')
   _3_not_letters += input('dritter Buchstabe NICHT?:\t')
