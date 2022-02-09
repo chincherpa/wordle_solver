@@ -19,11 +19,6 @@ _5_not_letters = ''
 _has_letters = ''
 _has_not_letters = ''
 
-"""
-oraTe
-THIns
-"""
-
 
 # 1 beginnt mit 'SU'
 # 2 enthält 'A'
@@ -83,6 +78,7 @@ def top_10_words(lwords: list):
 
 
 def letter_on_1(word):
+  # print(f'letter_on_1(word) {_1_letter = }')
   return word[0] == _1_letter
 
 
@@ -151,7 +147,9 @@ def has_not_letters(word):
   return True
 
 
-print(len(words), 'words in words5.txt')
+print()
+print(len(words), 'Wörter in Wortliste')
+print()
 
 while True:
   if _1_letter != '_':
@@ -179,13 +177,22 @@ while True:
   else:
     _5_letter = input('fünfter Buchstabe?:\t') or '_'
 
-  _1_not_letters += input('erster Buchstabe NICHT?:\t')
-  _2_not_letters += input('zweiter Buchstabe NICHT?:\t')
-  _3_not_letters += input('dritter Buchstabe NICHT?:\t')
-  _4_not_letters += input('vierter Buchstabe NICHT?:\t')
-  _5_not_letters += input('fünfter Buchstabe NICHT?:\t')
+  if _1_letter == '_':
+    _1_not_letters += input('erster Buchstabe NICHT?:\t')
+  if _2_letter == '_':
+    _2_not_letters += input('zweiter Buchstabe NICHT?:\t')
+  if _3_letter == '_':
+    _3_not_letters += input('dritter Buchstabe NICHT?:\t')
+  if _4_letter == '_':
+    _4_not_letters += input('vierter Buchstabe NICHT?:\t')
+  if _5_letter == '_':
+    _5_not_letters += input('fünfter Buchstabe NICHT?:\t')
 
   _has_letters += f'{_1_letter}{_2_letter}{_3_letter}{_4_letter}{_5_letter}'.replace('_', '')
+  _has_letters += f'{_1_not_letters}{_2_not_letters}{_3_not_letters}{_4_not_letters}{_5_not_letters}'
+
+  _has_letters = "".join(set(_has_letters))
+  _has_not_letters = "".join(set(_has_not_letters))
 
   _has_letters += input(f'hat Buchstaben?\t[{_has_letters.upper()}] : ')
   _has_not_letters += input(f'hat Buchstaben NICHT?\t[{_has_not_letters.upper()}] : ')
@@ -194,19 +201,19 @@ while True:
   print(f'-> {_1_letter.upper()}{_2_letter.upper()}{_3_letter.upper()}{_4_letter.upper()}{_5_letter.upper()} <-')
   print()
 
-  if _1_letter:
+  if _1_letter != '_':
     words = list(filter(letter_on_1, words))
 
-  if _2_letter:
+  if _2_letter != '_':
     words = list(filter(letter_on_2, words))
 
-  if _3_letter:
+  if _3_letter != '_':
     words = list(filter(letter_on_3, words))
 
-  if _4_letter:
+  if _4_letter != '_':
     words = list(filter(letter_on_4, words))
 
-  if _5_letter:
+  if _5_letter != '_':
     words = list(filter(letter_on_5, words))
 
   if _1_not_letters:
@@ -227,12 +234,12 @@ while True:
   if _has_letters:
     words = list(filter(has_letters, words))
     print()
-    print(f'{len(words)} haben \t"{_has_letters}"')
+    print(f'{len(words)} haben \t"{_has_letters.upper()}"')
 
   if _has_not_letters:
     words = list(filter(has_not_letters, words))
     print()
-    print(f'{len(words)} haben nicht \t"{_has_not_letters}"')
+    print(f'{len(words)} haben nicht \t"{_has_not_letters.upper()}"')
 
   print(f'{len(words)} Wörter übrig')
   print()
