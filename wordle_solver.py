@@ -6,11 +6,11 @@
 from rich import print
 from words import words
 
-_1_letter = ''
-_2_letter = ''
-_3_letter = ''
-_4_letter = ''
-_5_letter = ''
+_1_letter = '_'
+_2_letter = '_'
+_3_letter = '_'
+_4_letter = '_'
+_5_letter = '_'
 _1_not_letters = ''
 _2_not_letters = ''
 _3_not_letters = ''
@@ -154,18 +154,45 @@ def has_not_letters(word):
 print(len(words), 'words in words5.txt')
 
 while True:
-  if not _1_letter: _1_letter = input('erster Buchstabe?:\t') or None
-  if not _2_letter: _2_letter = input('zweiter Buchstabe?:\t') or None
-  if not _3_letter: _3_letter = input('dritter Buchstabe?:\t') or None
-  if not _4_letter: _4_letter = input('vierter Buchstabe?:\t') or None
-  if not _5_letter: _5_letter = input('fünfter Buchstabe?:\t') or None
+  if _1_letter != '_':
+    print(f'ERSTER Buchstabe: {_1_letter.upper()}')
+  else:
+    _1_letter = input('erster Buchstabe?:\t') or '_'
+
+  if _2_letter != '_':
+    print(f'ZWEITER Buchstabe: {_2_letter.upper()}')
+  else:
+    _2_letter = input('zweiter Buchstabe?:\t') or '_'
+
+  if _3_letter != '_':
+    print(f'DRITTER Buchstabe: {_3_letter.upper()}')
+  else:
+    _3_letter = input('dritter Buchstabe?:\t') or '_'
+
+  if _4_letter != '_':
+    print(f'VIERTER Buchstabe: {_4_letter.upper()}')
+  else:
+    _4_letter = input('vierter Buchstabe?:\t') or '_'
+
+  if _5_letter != '_':
+    print(f'FÜNFTER Buchstabe: {_5_letter.upper()}')
+  else:
+    _5_letter = input('fünfter Buchstabe?:\t') or '_'
+
   _1_not_letters += input('erster Buchstabe NICHT?:\t')
   _2_not_letters += input('zweiter Buchstabe NICHT?:\t')
   _3_not_letters += input('dritter Buchstabe NICHT?:\t')
   _4_not_letters += input('vierter Buchstabe NICHT?:\t')
   _5_not_letters += input('fünfter Buchstabe NICHT?:\t')
-  _has_letters += input('hat Buchstaben?:\t')
-  _has_not_letters += input('hat Buchstaben NICHT?:\t')
+
+  _has_letters += f'{_1_letter}{_2_letter}{_3_letter}{_4_letter}{_5_letter}'.replace('_', '')
+
+  _has_letters += input(f'hat Buchstaben?\t[{_has_letters.upper()}] : ')
+  _has_not_letters += input(f'hat Buchstaben NICHT?\t[{_has_not_letters.upper()}] : ')
+
+  print()
+  print(f'-> {_1_letter.upper()}{_2_letter.upper()}{_3_letter.upper()}{_4_letter.upper()}{_5_letter.upper()} <-')
+  print()
 
   if _1_letter:
     words = list(filter(letter_on_1, words))
@@ -218,4 +245,4 @@ while True:
 
   print('\n', lTop_10_words[0].upper(), '\n')
 
-  input('weiter...')
+  input('nächster Versuch...')
